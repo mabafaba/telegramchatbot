@@ -12,7 +12,8 @@ Imports:
     telegram.bot,
     magrittr,
     dplyr,
-    purrr
+    purrr,
+    uuid
 Suggests: 
     knitr,
     rmarkdown

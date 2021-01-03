@@ -37,13 +37,6 @@ answer_with<-function(answer,bot,update){
 }
 
 
-keyboard_data_response <- function(bot, update){
-
-  answer_with(A,bot,update)
-  answer_with(B,bot,update)
-  answer_with(C,bot,update)
-}
-
 #' @param ... all answers
 #' @export
 answer_handler <- function(...){
