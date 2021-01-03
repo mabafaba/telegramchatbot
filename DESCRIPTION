@@ -1,0 +1,10 @@
+Package: telegramchatbot2
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Martin Barner
+Maintainer: Martin Barner <m@martinbarner.de>
+Description: Framework to set up a simple Telegram Chatbot
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
