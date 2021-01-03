@@ -1,4 +1,4 @@
-Package: telegramchatbot2
+Package: telegramchatbot
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
@@ -8,3 +8,13 @@ Description: Framework to set up a simple Telegram Chatbot
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    telegram.bot,
+    magrittr,
+    dplyr,
+    purrr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.1.0

@@ -1,0 +1,116 @@
+---
+title: "Quickstart"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quickstart}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(telegramchatbot)
+library(magrittr)
+```
+
+## Get an API token
+
+Before anything, you'll need to contact the `@botfather` telegram bot to register your bot and get an API token.
+Here's a good [tutorial](https://www.siteguarding.com/en/how-to-get-telegram-bot-api-token) on this if you need additional instructions.
+
+## Answers & Buttons
+
+This bot framework consists of two basic elements: "answers" and "buttons". "Answers" are what the bot sends when the user hits a button or sends a command, and each answer can be followed by one or more buttons that link to other answers.
+
+To build our bot, we first create all the "answers" - all the things that the bot can say:
+
+```{r}
+
+start_answer <- answer(text = "Wecome to this Bot. How are you?")
+good_answer <- answer(text = "Glad to hear you're doing well!")
+bad_answer <- answer(text = "Sorry to hear.")
+
+```
+
+Now we connect the existing answers via buttons:
+
+```{r}
+start_answer <- start_answer %>% 
+  add_button(to = good_answer, label = "Good!") %>% 
+  add_button(to = bad_answer,  label = "Bad!")
+
+```
+
+So now, the "start_answer" is followed by two buttons labeled "Good!" and "Bad!", which trigger the bot to respond with the text from `good_answer` and `bad_answer` respectively.
+
+Now we can wrap all the answers up in an answer handler:
+
+```{r}
+# create a telegram.bot answer handler that monitors what buttons are pressed:
+
+answer_handler <- answer_handler(start_answer, good_answer, bad_answer)
+
+```
+
+## Answering Commands
+
+In terms of commands, at the very least, we need to link the first answer to the `/start` command:
+
+```{r}
+start_command <- command("start",answer = start_answer)
+
+```
+
+Let's add another answer to respond to a command, `/about`:
+
+```{r}
+about_answer<- answer(text = "this is a simple bot to check in how you are!")
+
+about_comand<-command("about", about_answer)
+```
+
+## Start bot
+
+Now we can start the bot!
+
+```{r}
+start_bot(Sys.getenv("MANSPLAINBOT_DEV"),
+          answer_handler,
+          start_command,
+          about_comand
+          )
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
