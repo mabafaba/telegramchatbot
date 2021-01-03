@@ -2,12 +2,18 @@
 % Please edit documentation in R/commands.R
 \name{command}
 \alias{command}
-\title{Answer to Command
- @export}
+\title{Answer to Command}
 \usage{
 command(command, answer)
 }
+\arguments{
+\item{command}{character string with the name of the command (without the forward slash)}
+
+\item{answer}{the answer object to be linked to the command}
+}
+\value{
+the corresponding telegram.bot command handler
+}
 \description{
 Answer to Command
- @export
 }

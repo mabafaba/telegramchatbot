@@ -1,3 +1,9 @@
+
+
+#' check if answer is requested by telegram.bot update
+#' @param answer answer to check
+#' @param update telgram.bot update object
+#' @return logical TRUE if answer is requested
 is_requested<-function(answer, update){
   cb_data<-update$callback_query$data
   if(length(cb_data)>0){
@@ -9,7 +15,10 @@ is_requested<-function(answer, update){
 }
 
 
-
+#' send answer object
+#' @param answer answer to send
+#' @param bot telegram.bot bot object
+#' @param update telegram.bot update object
 send_answer<-function(answer, bot, update){
   print(answer)
   text <- as.character(answer)
@@ -31,12 +40,15 @@ send_answer<-function(answer, bot, update){
 }
 
 
-
+#' react to request for answers
+#' @param answer the answer
+#' @param bot telegram.bot bot object
+#' @param update telegram.bot update object
 answer_with<-function(answer,bot,update){
   if(is_requested(answer, update)){send_answer(answer,bot,update)}
 }
 
-
+#' Answer handler
 #' @param ... all answers
 #' @export
 answer_handler <- function(...){

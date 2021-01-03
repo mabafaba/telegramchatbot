@@ -1,6 +1,7 @@
 
-
+#' shorthand to create telegram.bot keyboard from key/value pairs
 #' @param ... argument name becomes data, value becomes label: quick_keyboard(data_send_back = "a button label")
+#' @return a telegram.bot inline keyboard object
 quick_keyboard<-function(...){
   buttons <- list(...)
 

@@ -4,7 +4,7 @@ Title: What the Package Does (Title Case)
 Version: 0.1.0
 Author: Martin Barner
 Maintainer: Martin Barner <m@martinbarner.de>
-Description: Framework to set up a simple Telegram Chatbot
+Description: Framework to set up a simple Telegram Chatbot. Build a chatbot in three steps: 1. Create all "answers" that the bot knows 2. Link them with buttons and commands 3. Start the bot. This can be combined with more complex features in the telegram.bot package.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

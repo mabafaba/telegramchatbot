@@ -1,5 +1,8 @@
 
-# class
+#' Bot Answer
+#' @param text the response text of the answer
+#' @details You can use basic Markdown syntax
+#' @return an answer object
 answer<-function(text){
   if(!is.character(text)){stop("text must be character")}
   if(length(text)!=1){stop("text must have length 1")}
@@ -11,8 +14,11 @@ answer<-function(text){
 }
 
 
-
-print.telbot_answer<-function(x){
+#' print telbot answers
+#' @param x an answer object
+#' @param ... ignored
+#' @export
+print.telbot_answer<-function(x, ...){
   cat(as.character(x))
   cat("\n\n")
   cat(paste("uuid:", attributes(x)$uuid))
@@ -27,6 +33,9 @@ print.telbot_answer<-function(x){
 
 # get attributes
 
+#' check if an answer has buttons attached
+#' @param answer an answer object
+#' @return logical TRUE if answer has buttons
 has_buttons<-function(answer){
   nrow(get_answer_buttons(answer))>0
 }
@@ -34,16 +43,20 @@ has_buttons<-function(answer){
 
 
 
-
+#' extract buttons from answer
+#'
+#' @param answer answer object
+#' @return data frame of buttons needed for this answer
 get_answer_buttons<-function(answer){
   unique(data.frame(uuid = attributes(answer)$links_uuid,
                     label = attributes(answer)$links_label))
 }
 
 
-# transform
-
-
+#' create keyboard from answer
+#'
+#' @param answer answer to generate keyboard from
+#' @return telegram.bot keyboard object
 answer_keyboard<-function(answer){
   if(!has_buttons(answer)){
     # stop("can't make a keyboard for an answer without buttons.")
@@ -53,16 +66,22 @@ answer_keyboard<-function(answer){
   links_list<- as.list(links$label)
   names(links_list) = links$uuid
   do.call(quick_keyboard,links_list)
-  
-  
+
+
 }
 
-
+#' check if an object is a telegram bot "answer" object
+#' @param x object
+#' @return logical, TRUE if the class of `x` includes "telbot_answer"
 is.answer<-function(x){
   "telbot_answer" %in% class(x)
 }
 
-# modify
+#' Add Buttons
+#' @param answer the answer to add the button to
+#' @param to the answer to which the button should link
+#' @param label the label on the button
+#' @return the answer with the added button
 add_button <- function(answer,to, label){
   if(is.null(to)){warning(paste("to is null - not adding button. (label:",label,")"));return(answer)}
   if(!is.answer(answer)){stop("answer must be an answer object")}
